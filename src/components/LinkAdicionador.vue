@@ -23,7 +23,7 @@ export default {
         verificarLink(link) {
             const videoIdentificador = YoutubeLinkHandler.getVideoIdentificador(link)
 
-            if (videoIdentificador) {
+            if (!videoIdentificador) {
                 this.$emit("error", "Você só pode inserir links para vídeos válidos do YouTube")
 
                 return

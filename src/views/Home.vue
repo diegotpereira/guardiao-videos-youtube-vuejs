@@ -69,7 +69,15 @@ export default {
             this.exibirSnackbar (errorMessage, "error")
         },
         removerVideo(video) {
-            console.log(video);
+            API.deletarVideo(video.id)
+               .then(() => {
+                this.exibirSnackbar('video removido')
+                this.$delete(this.videos, video.id)
+               })
+               .catch((err) => {
+                this.handleError('Ocorreu um erro inesperado')
+                console.log(err);
+               })
         },
         exibirSnackbar(message, type = "success") {
             this.snackbar.message = message
