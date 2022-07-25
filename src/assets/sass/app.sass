@@ -1,0 +1,25 @@
+@import './colors'
+@import './partials/card'
+@import './partials/video-item-list'
+@import './partials/snackbar'
+
+#app
+  font-family: Avenir, Helvetica, Arial, sans-serif
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  background-color: $background-color
+  color: $dark
+*
+  color: $title-color
+.text-h5
+  color: var(--title-color)
+  font-size: 1.4rem 
+  font-weight: 500 !important
+.layout
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    margin-top: 10vh
+    &>div:first-child
+        margin-bottom: 10vh
