@@ -4,7 +4,7 @@
         <video-galeria :videos="videos" :loading="carregar" @remove="removerVideo" />
 
         <v-snackbar :color="snackbar.type" v-model="snackbar.show">
-            {{ snackbar.messagem }}
+            {{ snackbar.message }}
         <template v-slot:action="{ attrs }">
             <v-btn text v-bind="attrs" @click="snackbar.show = false">
                 fechar
@@ -24,7 +24,7 @@ export default {
         return {
             snackbar: {
                 show: false,
-                mensagem: "",
+                message: "",
                 type: "success"
             },
             videos: {},
@@ -43,10 +43,10 @@ export default {
             }
             const video = {
                 id: videoInfo.id,
-                titulo: videoInfo.snippet.titulo,
-                imagem: videoInfo.snippet.thumbnails.high.url,
+                title: videoInfo.snippet.title,
+                image: videoInfo.snippet.thumbnails.high.url,
                 url: `https://youtube.com/watch?v=${videoInfo.id}`,
-                descricao: videoInfo.snippet.descricao
+                description: videoInfo.snippet.description,
             }
             if (this.videos[videoInfo.id]) {
                 this.exibirSnackbar(
@@ -61,6 +61,7 @@ export default {
                 this.exibirSnackbar("O vídeo foi adicionado")
             })
             .catch((err) => {
+                this.handleError('Ocorreu um erro inesperado')
                 console.log(err);
             })
         },
@@ -70,8 +71,8 @@ export default {
         removerVideo(video) {
             console.log(video);
         },
-        exibirSnackbar(mensagem, type = "success") {
-            this.snackbar.mensagem = mensagem
+        exibirSnackbar(message, type = "success") {
+            this.snackbar.message = message
             this.snackbar.type = type
             this.snackbar.show = true
         }

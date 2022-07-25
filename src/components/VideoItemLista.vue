@@ -9,11 +9,11 @@
         <v-card min-height="60vh" height="60vh">
             <div class="video-preview">
                 <div class="video-img">
-
+                    <video-reproducao-botao :video="video" />
                 </div>
                 <div class="video-description">
-                    <h5> {{ video.titulo }}</h5>
-                    <pre>{{ video.descricao }}</pre>
+                    <h5> {{ video.title }}</h5>
+                    <pre>{{ video.description }}</pre>
                 </div>
             </div>
             <v-btn @click="fechar" class="close-button" fab small text>
@@ -23,6 +23,8 @@
     </v-dialog>
 </template>
 <script>
+import VideoReproducaoBotao from './VideoReproducaoBotao.vue'
+
 export default {
     data() {
         return {
@@ -31,9 +33,12 @@ export default {
     },
     props: {
         video: {
-            video: Object,
+            type: Object,
             required: true 
         }
+    },
+    components: {
+        VideoReproducaoBotao
     },
     methods: {
         fechar() {
