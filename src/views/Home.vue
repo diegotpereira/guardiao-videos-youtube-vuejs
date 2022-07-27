@@ -1,7 +1,7 @@
 <template>
     <div class="layout">
         <link-adicionador @new-video="addVideo" @error="handleError" />
-        <video-galeria :videos="videos" :loading="carregar" @remove="removerVideo" />
+        <video-galeria :videos="videos" :loading="loading" @remove="removerVideo" />
 
         <v-snackbar :color="snackbar.type" v-model="snackbar.show">
             {{ snackbar.message }}
@@ -28,7 +28,7 @@ export default {
                 type: "success"
             },
             videos: {},
-            carregar: false
+            loading: false
         }
     },
     components: {
@@ -69,7 +69,7 @@ export default {
             this.exibirSnackbar (errorMessage, "error")
         },
         removerVideo(video) {
-            API.deletarVideo(video.id)
+            API.deleteVideo(video.id)
                .then(() => {
                 this.exibirSnackbar('video removido')
                 this.$delete(this.videos, video.id)
@@ -86,7 +86,7 @@ export default {
         }
     },
     mounted() {
-        this.carregar = true 
+        this.loading = true 
         API.getVideos()
             .then((response) => {
                 response.Items.forEach((video) => {
@@ -94,7 +94,7 @@ export default {
                 })
             })
             .finally(() => {
-                this.carregar = false
+                this.loading = false
             })
     }
 }

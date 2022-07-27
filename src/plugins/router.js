@@ -6,6 +6,7 @@ import Tocador from '../views/TocadoraVideo.vue'
 Vue.use(VueRouter)
 
 export default new VueRouter({
+    mode: 'history',
     routes: [
         {
             path: '/',

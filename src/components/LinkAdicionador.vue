@@ -1,7 +1,7 @@
 <template>
     <div class="link-adicionador">
         <h2>Adicionar novo vídeo</h2>
-        <texto-campo-botao :loading="carregar" @submit="verificarLink" />
+        <texto-campo-botao :loading="loading" @submit="verificarLink" />
     </div>
 </template>
 <script>
@@ -13,7 +13,7 @@ export default {
     name: 'LinkAdicionador',
     data() {
         return {
-            carregar: false
+            loading: false
         }
     },
     components: {
@@ -28,12 +28,12 @@ export default {
 
                 return
             }
-            this.carregar = true
+            this.loading = true
 
             Youtube.getVideoInformacao(videoIdentificador)
             .then((videoInfo) => this.$emit("new-video", videoInfo))
             .finally(() => {
-                this.carregar = false
+                this.loading = false
             })
         }
     }

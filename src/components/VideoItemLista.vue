@@ -3,7 +3,7 @@
         <template v-slot:activator="{ on, attrs }">
             <div class="video-item-list" v-bind="attrs" v-on="on">
                 <v-img height="100%" :src="video.image" />
-                
+                <botao-deletar @confirmar-deletar="deleteVideo" />
             </div>
         </template>
         <v-card min-height="60vh" height="60vh">
@@ -16,7 +16,7 @@
                     <pre>{{ video.description }}</pre>
                 </div>
             </div>
-            <v-btn @click="fechar" class="close-button" fab small text>
+            <v-btn @click="fechar" class="fechar-botao" fab small text>
                 <v-icon>mdi-close</v-icon>
             </v-btn>
         </v-card>
@@ -24,7 +24,7 @@
 </template>
 <script>
 import VideoReproducaoBotao from './VideoReproducaoBotao.vue'
-
+import BotaoDeletar from './BotaoDeletar.vue'
 export default {
     data() {
         return {
@@ -38,11 +38,15 @@ export default {
         }
     },
     components: {
-        VideoReproducaoBotao
+        VideoReproducaoBotao,
+        BotaoDeletar
     },
     methods: {
         fechar() {
             this.dialog = false
+        },
+        deleteVideo() {
+            this.$emit("delete", this.video)
         }
     }
 }

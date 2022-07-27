@@ -2,7 +2,7 @@
     <v-form @submit.prevent="submit">
         <div class="texto-campo-botao">
             <v-text-field  label="Adicionar" class="texto-campo" v-model="link" outlined/>
-            <v-btn type="submit" class="enviar-botao" :loading="carregar" color="var(--primary-color)" height="100%">
+            <v-btn type="submit" class="enviar-botao" :loading="loading" color="var(--primary-color)" height="100%">
                 <span>Adicionar</span>
             </v-btn>
         </div>
@@ -16,7 +16,7 @@ export default {
         }
     },
     props: {
-        carregar: {
+        loading: {
             type: Boolean,
             default: false 
         }

@@ -1,5 +1,5 @@
 <template>
-    <v-skeleton-loader :loading="carregar" width="50vw" type="list-item-two-line">
+    <v-skeleton-loader :loading="loading" width="50vw" type="list-item-two-line">
         <div class="video-galeria">
             <video-item-lista v-for="(video, key) in videos" :key="key" :video="video" @delete="remover" />
         </div>
@@ -22,7 +22,7 @@ export default {
             type: Object,
             required: true,
         },
-        carregar: {
+        loading: {
             type: Boolean,
             default: false,
         }
